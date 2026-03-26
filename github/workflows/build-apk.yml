@@ -20,21 +20,6 @@ jobs:
       
       - name: Setup Android SDK
         uses: android-actions/setup-android@v3
-        with:
-          api-level: 33
-          build-tools: 33.0.0
-      
-      - name: Fix gradle.properties
-        run: |
-          if [ -f gradle.properties ]; then
-            sed -i 's/org.gradle.jvmargs=.*/org.gradle.jvmargs=-Xmx2048m -XX:MaxMetaspaceSize=512m/g' gradle.properties
-          else
-            echo "org.gradle.jvmargs=-Xmx2048m -XX:MaxMetaspaceSize=512m" > gradle.properties
-          fi
-          cat gradle.properties
-      
-      - name: Create local.properties
-        run: echo "sdk.dir=$ANDROID_HOME" > local.properties
       
       - name: Make gradlew executable
         run: chmod +x gradlew
